@@ -425,6 +425,7 @@ add_filter( 'widget_tag_cloud_args', 'twentysixteen_widget_tag_cloud_args' );
 
 add_image_size('logo_image_size',121,127);
 add_image_size('home_banner_image_size',1274,491);
+add_image_size('actualitie_image_size',344,194);
 
 
 /*******************END OF IMAGE SIZE FUNCTION **************************/

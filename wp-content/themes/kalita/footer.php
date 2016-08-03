@@ -215,6 +215,18 @@
 	 
  });
 </script>
+
+
+<!--script use for play only one audio at time-->
+<script>
+jQuery(function(){
+    jQuery("audio").on("play", function() {
+        jQuery("audio").not(this).each(function(index, audio) {
+            audio.pause();
+        });
+    });
+});
+</script>
 <!-- ******************* END OF SCRIPT ADDED BY DEVELOPER **************************-->
 <?php wp_footer(); ?>
 </body>

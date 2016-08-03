@@ -4,7 +4,7 @@
  */
 ?>
 <?php get_header(); 
-
+global $post;
 
 		function get_numerics ($str)
 		{
@@ -23,6 +23,8 @@
                 <div class="actualities-main">
 					<div class="mosaicflow__column">
 				<?php 
+				    global $q;
+					$q=1;
 					$i=0;
 					$args=array
 					(
@@ -32,17 +34,18 @@
 					);
 					$act_post = new WP_Query($args);
 					
+				
 					while( $act_post -> have_posts() ) : $act_post -> the_post();
 					
-						$show=get_field('show_on_front',$act_post->ID);
+						$show=get_field('show_on_front',$post->ID);
 	
 						switch ($show) 
 						{
 							case "Image":	
 								?>	
 									<div class="mosaicflow__item">
-										<div class="actualities-img"> <img src="<?php echo get_template_directory_uri();?>/images/actualities-img1.jpg">
-											<div class="actualities-inner"> <h2><a href="#"><?php echo strtoupper (the_title());?></a></h2>
+										<div class="actualities-img"><?php the_post_thumbnail('actualitie_image_size');?> 
+											<div class="actualities-inner"> <h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
 												<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href="#"> 2 Comments</a></small> 
 											</div>
 										</div>
@@ -50,17 +53,14 @@
 								<?php break;
 								
 							case "Gallery":
-								
+							
 								?>
 										<div class="mosaicflow__item">
 											<div class="actualities-slider">
-												<div id="myCarousel" class="carousel slide" data-ride="carousel">
+												<div id="myCarousel1" class="carousel slide" data-ride="carousel1">
 													<div class="carousel-inner" role="listbox">
 												<?php
-												// echo '<pre>'; 												
-												 // print_r($act_post);
-												 // echo '</pre>';
-												  $one1 = get_post_meta(186,'gallery',true); 	
+												  $one1 = get_post_meta($post->ID,'gallery',true); 	
 												  $arr1=get_numerics($one1);
 													$j=0;
 													foreach($arr1 as $val1)
@@ -85,11 +85,11 @@
 													}
 												?>
 													</div>
-													<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-													<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+													<a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+													<a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
 												</div>
 												<div class="actualities-inner">
-														<h2><a href="#"><?php echo strtoupper (the_title());?></a></h2>
+														<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
 													<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 1 Comments</a></small> 
 												</div>
 											</div>
@@ -99,27 +99,33 @@
 								
 							case "Audio":
 								
+								$audio_url=get_field('audio',$act_post->ID);
+								
 								?>
 								
-									 <div class="mosaicflow__item">
-											<div class="actualities-audio"> <img src="<?php echo get_template_directory_uri();?>/images/audio.jpg">
-												<div class="actualities-inner">
-												    <h2><a href="#"><?php echo strtoupper (the_title());?></a></h2>
-													<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 2 Comments</a></small> </div>
-											</div>
+								 <div class="mosaicflow__item">
+									<div class="actualities-audio">
+										<audio controls >
+											  <source src="<?php echo $audio_url;?>" type="audio/mpeg">
+										</audio>
+										
+										<div class="actualities-inner">
+											<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
+											<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 2 Comments</a></small>
+										</div>
 									</div>
+								</div>
 								
 								<?php break;
 								
 							case "Video":
 								
 								?>
-									
 										<div class="mosaicflow__item">
 											<div class="actualities-video"> 
-											<?php the_field("video",$act_post->ID);?> 
+											<?php the_field('video',$act_post->ID);?> 
 												<div class="actualities-inner">
-													<h2><a href="#"><?php echo strtoupper (the_title());?></a></h2>
+													<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
 													<?php the_content();?>
 													<small><?php echo get_the_date(); ?> / <a href=""> 2 Comments</a></small> 
 												</div>
@@ -129,23 +135,45 @@
 								<?php break;
 
 							case "Quote":
-							?>
+								
+								if($q%2==0)
+								{
+							?>		
 									<div class="mosaicflow__item">
-											<div class="actualities-quote">
-												<div class="actualities-inner"> <small><?php the_title();?> / <a href=""> 0 Comments</a></small>
+											<div class="actualities-quote2">
+												<div class="actualities-inner"> <small><?php the_title();?><a href=""> 0 Comments</a></small>
 													<div class="quotes">
 														<?php the_content();?>
 													</div>
 												</div>
 											</div>
+									</div>
+							<?php	
+								}
+								else
+								{
+							?>
+									<div class="mosaicflow__item">
+										<div class="actualities-quote">
+											<div class="actualities-inner"> <small><?php the_title();?><a href=""> 0 Comments</a></small>
+												<div class="quotes">
+													<?php the_content();?>
+												</div>
+											</div>
 										</div>
+									</div>
+							<?php	
+							}
+							$q++;
+							?>
+									
 							<?php break;
                             								
 							default:
 								echo "Case Default Front end show only image";
 						}//end of switch
 					$i++;
-					if($i%3==0)
+					if($i%3==0)//using for change column div 
 					{
 					?>
 						</div>
@@ -153,7 +181,6 @@
 					<?php
 					}						
 					endwhile; 
-					wp_reset_query();
 					
 				?>      
                 </div>
