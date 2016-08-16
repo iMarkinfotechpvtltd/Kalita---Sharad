@@ -24,6 +24,8 @@ global $post;
 					<div class="mosaicflow__column">
 				<?php 
 				    global $q;
+					global $g;
+					$g=1;
 					$q=1;
 					$i=0;
 					$args=array
@@ -46,7 +48,10 @@ global $post;
 									<div class="mosaicflow__item">
 										<div class="actualities-img"><?php the_post_thumbnail('actualitie_image_size');?> 
 											<div class="actualities-inner"> <h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-												<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href="#"> 2 Comments</a></small> 
+											<?php
+												$comments_count = wp_count_comments( $post->ID );?>
+											
+												<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href="#"><?php echo $comments_count->total_comments;?> Comments</a></small> 
 											</div>
 										</div>
 									</div>
@@ -57,7 +62,7 @@ global $post;
 								?>
 										<div class="mosaicflow__item">
 											<div class="actualities-slider">
-												<div id="myCarousel1" class="carousel slide" data-ride="carousel1">
+												<div id="myCarousel<?php echo $g;?>" class="carousel slide" data-ride="carousel1">
 													<div class="carousel-inner" role="listbox">
 												<?php
 												  $one1 = get_post_meta($post->ID,'gallery',true); 	
@@ -65,7 +70,7 @@ global $post;
 													$j=0;
 													foreach($arr1 as $val1)
 													{
-														$small_image_url1 = wp_get_attachment_image_src($val1, 'full');
+														$small_image_url1 = wp_get_attachment_image_src($val1, 'actualitie_image_size');
 												
 														if($j==0)
 														{
@@ -85,17 +90,19 @@ global $post;
 													}
 												?>
 													</div>
-													<a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-													<a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+													<a class="left carousel-control" href="#myCarousel<?php echo $g;?>" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+													<a class="right carousel-control" href="#myCarousel<?php echo $g;?>" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
 												</div>
 												<div class="actualities-inner">
 														<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-													<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 1 Comments</a></small> 
+													<?php the_content();?> <small><?php echo get_the_date(); ?><a href="">
+													<?php $comments_count = wp_count_comments( $post->ID );
+													echo $comments_count->total_comments;?> Comments</a></small> 
 												</div>
 											</div>
 										</div>
 								
-								<?php break;
+								<?php $g++; break;
 								
 							case "Audio":
 								
@@ -111,7 +118,9 @@ global $post;
 										
 										<div class="actualities-inner">
 											<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-											<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 2 Comments</a></small>
+											<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 
+											<?php $comments_count = wp_count_comments( $post->ID );
+											echo $comments_count->total_comments;?> Comments</a></small> 
 										</div>
 									</div>
 								</div>
@@ -127,7 +136,9 @@ global $post;
 												<div class="actualities-inner">
 													<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
 													<?php the_content();?>
-													<small><?php echo get_the_date(); ?> / <a href=""> 2 Comments</a></small> 
+													<small><?php echo get_the_date(); ?> / <a href=""> 
+													<?php $comments_count = wp_count_comments( $post->ID );
+													 echo $comments_count->total_comments;?> Comments</a></small> 
 												</div>
 											</div>
 										</div>
@@ -141,7 +152,9 @@ global $post;
 							?>		
 									<div class="mosaicflow__item">
 											<div class="actualities-quote2">
-												<div class="actualities-inner"> <small><?php the_title();?><a href=""> 0 Comments</a></small>
+												<div class="actualities-inner"> <small><?php the_title();?><a href=""> 
+												<?php $comments_count = wp_count_comments( $post->ID );
+												echo $comments_count->total_comments;?> Comments</a></small> 
 													<div class="quotes">
 														<?php the_content();?>
 													</div>
@@ -155,7 +168,8 @@ global $post;
 							?>
 									<div class="mosaicflow__item">
 										<div class="actualities-quote">
-											<div class="actualities-inner"> <small><?php the_title();?><a href=""> 0 Comments</a></small>
+											<div class="actualities-inner"> <small><?php the_title();?><a href=""> <?php $comments_count = wp_count_comments( $post->ID );
+											echo $comments_count->total_comments;?> Comments</a></small>
 												<div class="quotes">
 													<?php the_content();?>
 												</div>
@@ -184,11 +198,9 @@ global $post;
 					
 				?>      
                 </div>
-                
-                <div class="actualities-btn">
+            </div>
+			<div class="actualities-btn">
                     <button type="submit" class="show-more-btn">SHOW MORE </button>
-                </div>
-                
             </div>
         </div>
     </section> 

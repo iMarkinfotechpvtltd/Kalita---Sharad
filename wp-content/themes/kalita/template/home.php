@@ -8,31 +8,65 @@
  
  
  /*Getting  Home Banner Image */
-					$Banner_image=get_post_meta($post->ID,"home_banner",true);
-					$Banner = wp_get_attachment_image_src($Banner_image, 'home_banner_image_size');	
+	$Banner_image=get_post_meta($post->ID,"home_banner",true);
+	$Banner = wp_get_attachment_image_src($Banner_image, 'home_banner_image_size');	
 		
  ?>
  <section class="section2"  style="background-image:url('<?php echo $url=$Banner[0]?>')" >
         <div class="container">
-            <div class="shadow-box"> <h2><a href="">L’état de votre réseau</a></h2>
+            <div class="shadow-box">
+					<h2><a href=""><?php the_field('etat_de_votre_reseau_text',$post->ID);?></a></h2>
                 <div class="shadow-box-inner">
-                    <p>du 01 au 15/06/2016
-                        <br> <small>Aucune perturbation</small></p>
-                    <p>15/06/2016 10h-20h
-                        <br> <small>Chaufferie n°2 <br>
-                Interruption pour maintenance programmée</small></p>
-                   
-                        <h3> <a href="">L’actualité de votre réseau</a></h3>
-                    <p>15/06/2016 Journée porte-ouverte
-                        <br> <small>The term minimalism is also used 
-									to describe a trend in design and architecture 
-									where in the subject is reduced to its n...
-							</small>
-					</p>
+				
+				<!--***************START GETTING DATA FROM CUSTOM POST L’ÉTAT DE ******************-->
+			<?php
+			
+			  query_posts('post_type=ltat_de&showposts=2&order=DESC'); 
+			 
+			 while (have_posts()) : the_post(); 
+			 ?>
+                    <p><a href="<?php the_permalink();?>"><?php the_field('date',$post->ID)?>
+                        <br><small><?php the_title();?><br>
+						<?php $content = get_the_content(); echo mb_strimwidth($content, 0, 40);?></small></a></p>
+             <?php 
+			 endwhile;
+			 wp_reset_query();
+			 ?>  
+			<!--***************END OF GETTING DATA FROM CUSTOM POST L’ÉTAT DE ******************-->
+				
+				
+			<!--***************START GETTING DATA FROM CUSTOM POST L’ACTUALITÉ DE ******************-->	
+
+                 <h3><a href=""><?php the_field('actualite_de_votre_reseau_text',$post->ID);?></a></h3>
+                    <?php 
+					$args=array
+					(
+							'post_type'      =>'lactualit_de',
+							'posts_per_page' => 1,
+							'order'          => 'DESC',
+					);
+					$lactualit_de = new WP_Query($args);
+				
+					while( $lactualit_de -> have_posts() ) : $lactualit_de -> the_post();
+					?>
+					<p><a href="<?php the_permalink();?>"><?php echo date('d/m/Y');?>&nbsp;<?php the_title();?>
+                        <br><small><?php $content = get_the_content(); echo mb_strimwidth($content, 0, 120);?></small></p>
+					
+					<?php 
+					endwhile;
+					wp_reset_query();
+					?> 
+					
+					
+			<!--***************END OF GETTING DATA FROM CUSTOM POST L’ACTUALITÉ DE ******************-->		
+					
                     <div class="shadow-box-footer">
-                        <h2>DJU</h2>
-                        <p>mai 2016 : 142</p>
-                    </div>
+					
+					<!--********GETTING DATA FROM CUSTOM FIELD SHADOW-BOX-FOOTER_TEXT*******-->
+                       
+					   <?php the_field('shadow-box-footer_text');?>
+                    
+					</div>
                 </div>
             </div>
         </div>
@@ -80,7 +114,9 @@
 					</div>
 				</div>
 				<?php endif; ?> 
-              <iframe src="https://www.google.com/maps/d/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>
+					<!--<iframe src="https://www.google.com/maps/d/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>--> 
+					
+					<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>
             </div>
         </div>
     </section>

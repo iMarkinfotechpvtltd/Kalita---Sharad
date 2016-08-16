@@ -16,27 +16,36 @@
  * @since Twenty Sixteen 1.0
  */
  
-
 get_header();
 global $post; 
 
-// echo '<pre>';
+/*** CODE USE FOR GETTING CUSTOM FIELD CATEGORY_IMAGE VALUE FROM TAXONOMY ***/
 
-// print_r($post);
+$terms = wp_get_post_terms( $post->ID, 'vousetvotre_category' ); 
 
-// echo '</pre>';
+$term_id=$terms['0']->term_id;
 
+$value = get_field('category_image','vousetvotre_category_'.$term_id);
 
+if ( $value ) 
+{
 ?>
-
-<section class="standard-section2">
+	<section class="standard-section2" style="background-image:url('<?php echo $value['url']; ?>')">
+<?php
+} 
+else 
+{ 
+?>
+<section class="standard-section2" style="background-image:url('http://placehold.it/1274x692&amp;text=Aucune image trouvée')">
+<?php 
+} 
+?>
     <div class="container">
         <div class="standard-section2-heading">
             <h2><?php echo strtoupper (single_cat_title()); ?></h2>
             <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
         </div>
-    </div>
-     
+    </div>     
 </section>
 
 <section class="standard-section3">
@@ -48,8 +57,7 @@ global $post;
          <?php while ( have_posts() ) : the_post(); ?>
 		 
 				<h3><a href="<?php the_permalink();?>"><?php echo $post->post_title;?></a></h3>
-						       <p><?php echo $post->post_content; ?></p>
-							   
+						       <p><?php echo wp_trim_words( $post->post_content, 50);?></p>	
 		   <?php endwhile; wp_reset_query(); ?>
     </div>
 </div>  
@@ -64,8 +72,8 @@ global $post;
 					$args=array
 					(
 							'post_type'      =>'post',
-							'posts_per_page' => -1,
-							'order'          => 'ASC',
+							'posts_per_page' => 5,
+							'order'          => 'DESC',
 					);
 					$actualites = new WP_Query($args);
 				

@@ -426,6 +426,8 @@ add_filter( 'widget_tag_cloud_args', 'twentysixteen_widget_tag_cloud_args' );
 add_image_size('logo_image_size',121,127);
 add_image_size('home_banner_image_size',1274,491);
 add_image_size('actualitie_image_size',344,194);
+add_image_size('category_banner_image_size',1274,692);
+add_image_size('actulities_inner_image_size',1100,619);
 
 
 /*******************END OF IMAGE SIZE FUNCTION **************************/
@@ -587,3 +589,147 @@ function codex_QuestionFrequentes() {
 add_action( 'init', 'codex_QuestionFrequentes' ); 
 
 /************** END OF CODE FOR CREATE CUSTOM POST QUESTION FREQUENTES ******************/ 		
+
+
+/************** START CODE FOR CREATE CUSTOM POST L’ÉTAT DE VOTRE RÉSEAU ******************/ 
+
+function codex_létat_de() {
+  $labels = array(
+    'name' => 'létat_de',
+    'singular_name' => 'létat_de',
+    'add_new' => 'Add létat_de',
+    'add_new_item' => 'Add New létat_de',
+    'edit_item' => 'Edit létat_de',
+    'new_item' => 'New létat_de',
+    'all_items' => 'All létat_de',
+    'view_item' => 'View létat_de',
+    'search_items' => 'Search létat_de',
+    'not_found' =>  'No létat_de found',
+    'not_found_in_trash' => 'No létat_de found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'L`état_de'
+  );
+   
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'létat_de' ), 
+    'capability_type' => 'post',
+    'has_archive' => true, 
+    'hierarchical' => false,
+    'menu_position' => null,
+	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  ); 
+
+  register_post_type( 'létat_de', $args );
+}
+add_action( 'init', 'codex_létat_de' ); 
+
+/************** END OF CODE FOR CREATE CUSTOM POST L’ÉTAT DE VOTRE RÉSEAU ******************/ 		
+
+
+/************** START CODE FOR CREATE CUSTOM POST L’ACTUALITÉ DE VOTRE RÉSEAU ******************/ 
+
+function codex_lactualité_de() {
+  $labels = array(
+    'name' => 'lactualité_de',
+    'singular_name' => 'lactualité_de',
+    'add_new' => 'Add lactualité_de',
+    'add_new_item' => 'Add New lactualité_de',
+    'edit_item' => 'Edit lactualité_de',
+    'new_item' => 'New lactualité_de',
+    'all_items' => 'All lactualité_de',
+    'view_item' => 'View lactualité_de',
+    'search_items' => 'Search lactualité_de',
+    'not_found' =>  'No lactualité_de found',
+    'not_found_in_trash' => 'No lactualité_de found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'L’actualité de'
+  );
+   
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'lactualité_de' ), 
+    'capability_type' => 'post',
+    'has_archive' => true, 
+    'hierarchical' => false,
+    'menu_position' => null,
+	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  ); 
+
+  register_post_type( 'lactualité_de', $args );
+}
+add_action( 'init', 'codex_lactualité_de' ); 
+
+/************** END OF CODE FOR CREATE CUSTOM POST L’ACTUALITÉ DE VOTRE RÉSEAU ******************/ 		
+
+
+
+
+// Modify comments header text in comments
+add_filter( 'genesis_title_comments', 'child_title_comments');
+function child_title_comments() {
+    return __(comments_number( '<h3>No Responses</h3>', '<h3>1 Response</h3>', '<h3>% Responses...</h3>' ), 'genesis');
+}
+ 
+// Unset URL from comment form
+function crunchify_move_comment_form_below( $fields ) { 
+    $comment_field = $fields['comment']; 
+    unset( $fields['comment'] ); 
+    $fields['comment'] = $comment_field; 
+    return $fields; 
+} 
+add_filter( 'comment_form_fields', 'crunchify_move_comment_form_below' ); 
+ 
+// Add placeholder for Name and Email
+function modify_comment_form_fields($fields){
+    $fields['author'] = '<p class="comment-form-author">' . '<input id="author" placeholder="Your Name" name="author" type="text" value="' .
+				esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' />'.
+				'<label for="author">' . __( '' ) . '</label> ' .
+				( $req ? '<span class="required">*</span>' : '' )  .
+				'</p>';
+    $fields['email'] = '<p class="comment-form-email">' . '<input id="email" placeholder="Email Address" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+				'" size="30"' . $aria_req . ' />'  .
+				'<label for="email">' . __( '' ) . '</label> ' .
+				( $req ? '<span class="required">*</span>' : '' ) 
+				 .
+				'</p>';
+	$fields['url'] = '<p class="comment-form-url">' .
+			 '<input id="url" name="url" placeholder="Website" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /> ' .
+			'<label for="url">' . __( '', 'domainreference' ) . '</label>' .
+	           '</p>';
+	
+    return $fields;
+}
+add_filter('comment_form_default_fields','modify_comment_form_fields');
+
+
+
+//*****************  Sets the comments to allowed by default  ************************//
+
+function default_comments_on( $data ) {
+    if( $data['post_type'] == 'vous_et_votre' ) {
+        $data['comment_status'] = 'open';
+    }
+
+    return $data;
+}
+add_filter( 'wp_insert_post_data', 'default_comments_on' );
+
+function default_comments_on1( $data ) {
+    if( $data['post_type'] == 'votre_reseau' ) {
+        $data['comment_status'] = 'open';
+    }
+
+    return $data;
+}
+add_filter( 'wp_insert_post_data', 'default_comments_on1' );

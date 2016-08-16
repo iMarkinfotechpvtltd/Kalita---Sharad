@@ -127,8 +127,6 @@
                         <a href="http://www.zats.biz/" target="_blank">zats</a>
                     </p>
                 </div>
-            
-            
                     <img src="<?php echo get_template_directory_uri();?>/images/footer2.png" class="footer-last-img"> 
         </div>
             
@@ -136,7 +134,7 @@
 
     </footer>
     
-<!--Script by html designer-->	
+<!--SCRIPT USE BY HTML DESIGNER-->	
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -145,7 +143,9 @@
 	<script src="<?php echo get_template_directory_uri();?>/js/parallax.js"></script>
 	<script src="<?php echo get_template_directory_uri();?>/js/parallax2.js"></script>	
     <script src="<?php echo get_template_directory_uri();?>/js/modernizr.js"></script>
-    <script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	
+	<script>
         jQuery(document).ready(function () {
             //Check to see if the window is top if not then display button
             jQuery(window).scroll(function () {
@@ -202,7 +202,7 @@
    
 
 
-<!--Script by html designer-->	
+<!--END OF SCRIPT USE BY HTML DESIGNER-->	
 
 
 <!-- ******************* START SCRIPT ADDED BY DEVELOPER **************************-->
@@ -227,6 +227,79 @@ jQuery(function(){
     });
 });
 </script>
+
+<!--script use for show active class on tags other page -->
+<script>
+jQuery(document).ready(function()
+{
+	var hash = jQuery(location).attr('href');
+	var abc=hash.split("/");
+	
+	if(abc[5]!="")
+	{
+		jQuery(".standard-column-list3-inline li a").each(function(){
+			var req_text = jQuery(this).text();
+			if(req_text.toLowerCase() == abc[5])
+			{
+				jQuery(this).parent().addClass("active");
+			}
+		})
+	}
+});
+</script>
+
+<script>
+
+(function($,W,D)
+{
+    var JQUERY4U = {};
+
+    JQUERY4U.UTIL =
+    {
+        setupFormValidation: function()
+        {
+            //form validation rules
+            jQuery("#commentform").validate({
+                rules: {
+                   
+                    author: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                },
+                messages: {
+                    author: "Please enter your Name",
+                    email: "Please enter a valid email address"
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        }
+    }
+
+    //when the dom has loaded setup form validation rules
+    jQuery(D).ready(function($) {
+        JQUERY4U.UTIL.setupFormValidation();
+    });
+
+})(jQuery, window, document);
+
+</script>
+
+<script>
+jQuery(document).ready(function()
+{
+        jQuery('#author').val('');
+		jQuery('#email').val('');
+            
+});
+
+</script>
+
+
+
 <!-- ******************* END OF SCRIPT ADDED BY DEVELOPER **************************-->
 <?php wp_footer(); ?>
 </body>

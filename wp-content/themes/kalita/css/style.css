@@ -140,7 +140,7 @@ a.navbar-brand {
 .navbar-default {
     background-color: #fff;
     border-color: transparent;
-    height: 140px;
+    height: 135px;
 }
 
 ul.nav.navbar-nav.navbar-right .main-menu-item a {
@@ -745,6 +745,21 @@ ul.section7-col2-list {
     margin-top: 25px;
 }
 
+.section7-col3 a{
+        font-family: 'MuseoSansCyrl-100';
+    color: #6f6f6f;
+    line-height: 25px;
+    font-size: 13px;
+    transition: ease all 0.4s;
+    -webkit-transition: ease all 0.3s;
+}
+
+.section7-col3 a:hover{
+        color: #fff;
+    transition: ease all 0.4s;
+    -webkit-transition: ease all 0.3s;
+}
+
 .footer2 {
     margin-top: 15px;
     text-align: center;
@@ -881,10 +896,10 @@ footer {
 
 .standard-section2 {
     background-image: url(../images/standard-banner.jpg);
-    height: 550px;
+       height: 550px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center bottom;
+    background-position: top;
 }
 
 .standard-section3 {
@@ -1127,8 +1142,7 @@ hr {
 .actualities-inner p {
     color: #c0c0c0;
     margin-top: 20px;
-    font-size: 15px;
-    font-family: 'MuseoSansCyrl-300';
+    font-size: 15px;  
     margin-bottom: 27px;
 }
 
@@ -1235,7 +1249,9 @@ span.glyphicon.glyphicon-chevron-right {
 
 .actualities-btn {
     text-align: center;
-    margin-top: 40px;
+   width:100%;
+        float: left;
+    margin-top: 10px;
 }
 
 

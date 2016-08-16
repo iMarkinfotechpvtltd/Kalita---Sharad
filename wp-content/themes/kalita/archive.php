@@ -15,51 +15,124 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
+ 
 
-get_header(); ?>
+get_header();
+global $post; 
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+// echo '<pre>';
 
-		<?php if ( have_posts() ) : ?>
+// print_r($post);
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+// echo '</pre>';
+
+
+?>
+
+<section class="standard-section2">
+    <div class="container">
+        <div class="standard-section2-heading">
+            <h2><?php echo strtoupper (single_cat_title()); ?></h2>
+            <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
+        </div>
+    </div>
+     
+</section>
+
+<section class="standard-section3">
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+    <div class="standard-section3-column1">
+        <h2>POSTS OF TAG : <?php echo strtoupper (single_cat_title()); ?></h2>
+         <?php while ( have_posts() ) : the_post(); ?>
+		 
+				<h3><a href="<?php the_permalink();?>"><?php echo $post->post_title;?></a></h3>
+						       <p><?php echo $post->post_content; ?></p>
+							   
+		   <?php endwhile; wp_reset_query(); ?>
+    </div>
+</div>  
+	
+	<div class="col-md-4">
+    <div class="standard-section3-column2">
+        
+        <h2>Dernières actualités</h2>
+        
+        <ul class="standard-column2-list">
+           <?php 
+					$args=array
+					(
+							'post_type'      =>'post',
+							'posts_per_page' => 5,
+							'order'          => 'DESC',
+					);
+					$actualites = new WP_Query($args);
+				
+					while( $actualites -> have_posts() ) : $actualites -> the_post();
 				?>
-			</header><!-- .page-header -->
+						<li><a href="<?php the_permalink();?>"><?php the_title();?></a></li>
+			  <?php  
+					endwhile; 
+					wp_reset_query();
+			   ?>
+        </ul>
+        
+   
+        
+        <div class="standard-column-list3">
+            <h4>TAGS</h4>
+            <ul class="standard-column-list3-inline">
+            
+			<?php 
+				$args = array( 'taxonomy' => 'post_tag','hide_empty'=>0 );
+				$posttags = get_terms('post_tag', $args);
 
-			<?php
-			// Start the Loop.
-			while ( have_posts() ) : the_post();
+				foreach ($posttags as $tags) 
+				{
+			?>
+					<li><a href="<?php echo get_category_link( $tags->term_id ); ?>"><?php echo $tags->name;?></a></li>,
+            <?php 
+				}
+			?>
+      
+			</ul>
+        </div>
+        </div>
+    </div>
+    
+ </div>   
+    
+ </div> 
+</section>
+  
+<script>
+// jQuery(function() {
+	
+	// var segment_str = window.location.pathname; // return segment1/segment2/segment3/segment4
+	// var segment_array = segment_str.split( '/' );
+	// var last_segment = segment_array[segment_array.length - 2];
+     // jQuery("ul.standard-column-list3-inline li a ").each(function(){
+          // if(jQuery(this).attr("href") == last_segment || jQuery(this).attr("href") == '' )
+          // jQuery(this).closest("li").addClass("active"); 
+     // })
+// });
+</script>
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+<script>
+jQuery(document).ready(function(){
+var hash = jQuery(location).attr('href');
+var abc=hash.split("/");
+if(abc[5]!="")
+{
 
-			// End the loop.
-			endwhile;
+jQuery("."+abc[5]).addClass("active");
 
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-				'next_text'          => __( 'Next page', 'twentysixteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-			) );
+}
 
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
 
-		endif;
-		?>
 
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
-<?php get_sidebar(); ?>
+});
+</script>
+  
 <?php get_footer(); ?>
