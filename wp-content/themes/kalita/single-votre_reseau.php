@@ -80,7 +80,7 @@ global $post;
 								</div>-->
 								
                                 <div class="actualites-img-description">
-                                    <p><?php echo $post->post_content;?></p>
+                                    <?php echo $post->post_content;?>
                                     <div class="tags"> 
 										<b>Tages:</b><small>
 										<?php

@@ -50,7 +50,7 @@
 					while( $lactualit_de -> have_posts() ) : $lactualit_de -> the_post();
 					?>
 					<p><a href="<?php the_permalink();?>"><?php echo date('d/m/Y');?>&nbsp;<?php the_title();?>
-                        <br><small><?php $content = get_the_content(); echo mb_strimwidth($content, 0, 120);?></small></p>
+                        <br><small><?php $content = get_the_content(); echo mb_strimwidth($content, 0, 120);?></small></a></p>
 					
 					<?php 
 					endwhile;
@@ -82,8 +82,7 @@
 			
 			<!--****************** START GETTING CATEGORIES FROM VOTRE RESEAU *********************-->
 		     <?php
-				$args = array( 'taxonomy' => 'votrereseau_category',
-								'hide_empty'=>0 );
+				$args = array( 'taxonomy' => 'votrereseau_category','hide_empty'=>0 );
 				$terms = get_terms('votrereseau_category', $args);
 
                foreach ($terms as $term) 

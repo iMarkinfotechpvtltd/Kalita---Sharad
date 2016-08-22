@@ -120,7 +120,7 @@
           
                 
                 
-                    <img src="<?php echo get_template_directory_uri();?>/images/footer1.jpg" class="footer-first-img">
+                    <!--<img src="<?php echo get_template_directory_uri();?>/images/footer1.jpg" class="footer-first-img">-->
 
              <div class="powered-by">
                     <p>Powered By:
@@ -299,6 +299,18 @@ jQuery(document).ready(function()
 </script>
 
 
+        <script>
+            jQuery(document).on("scroll",function(){
+    if(jQuery(document).scrollTop()>200){
+        jQuery("nav.navbar.navbar-default").addClass("small");
+    } else{
+        jQuery("nav.navbar.navbar-default").removeClass("small");
+    }
+});
+        </script>
+
+
+<script src="js/lightbox.js"></script>
 
 <!-- ******************* END OF SCRIPT ADDED BY DEVELOPER **************************-->
 <?php wp_footer(); ?>

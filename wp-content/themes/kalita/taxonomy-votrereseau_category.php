@@ -22,11 +22,11 @@ global $post;
 
 /*** CODE USE FOR GETTING CUSTOM FIELD CATEGORY_IMAGE VALUE FROM TAXONOMY ***/
 
-$terms = wp_get_post_terms( $post->ID, 'vousetvotre_category' ); 
+$terms = wp_get_post_terms( $post->ID, 'votrereseau_category' ); 
 
 $term_id=$terms['0']->term_id;
 
-$value = get_field('category_image','vousetvotre_category_'.$term_id);
+$value = get_field('category_image','votrereseau_category_'.$term_id);
 
 
 if ( $value ) 
@@ -44,7 +44,7 @@ else
 ?>
     <div class="container">
         <div class="standard-section2-heading">
-            <h2><?php echo strtoupper (single_cat_title()); ?></h2>
+            <h2><?php echo strtoupper(single_cat_title()); ?></h2>
             <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
         </div>
     </div>    
@@ -58,9 +58,8 @@ else
         <h2>VOTRE RESEAU : <?php echo strtoupper (single_cat_title()); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
 		 
-				<h3><a href="<?php the_permalink();?>"><?php echo $post->post_title;?></a></h3>
-						       <p><?php echo wp_trim_words( $post->post_content, 50);?></p>	
-							   
+				<h3><?php echo $post->post_title;?></h3>
+				 <?php echo $post->post_content;?>								   
 		   <?php endwhile; wp_reset_query(); ?>
     </div>
 </div>  
@@ -88,11 +87,14 @@ else
 					wp_reset_query();
 			   ?>
         </ul>
-       
+        
+   
+        
         <div class="standard-column-list3">
             <h4>TAGS</h4>
             <ul class="standard-column-list3-inline">
-				<?php 
+            
+			<?php 
 				$args = array( 'taxonomy' => 'post_tag','hide_empty'=>0 );
 				$posttags = get_terms('post_tag', $args);
 
@@ -103,7 +105,8 @@ else
             <?php 
 				}
 			?>
-            </ul>
+      
+			</ul>
         </div>
         </div>
     </div>

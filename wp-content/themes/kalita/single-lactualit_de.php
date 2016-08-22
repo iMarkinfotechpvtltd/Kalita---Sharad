@@ -46,13 +46,13 @@ global $post;
 								else 
 								{ 
 							   ?>
-								<img src="http://placehold.it/1100x619&amp;text=Aucune image trouvée" alt="<?php the_title(); ?>"/>
+								<img src="http://placehold.it/1100x619&amp;text=Aucune image trouv&#233;e" alt="<?php the_title(); ?>"/>
 								<?php 
 								} 
 								?>
 							
 							
-							<!--<img src="<?php //echo get_template_directory_uri();?>/images/inner.jpg">
+							<!--<img src="<?php //echo get_template_directory_uri();?>/images/inner.jpg">-->
                                <div class="actualites-inner-img-inner-text">
                                     <h2><?php //echo get_the_date('j F'); ?></h2>
                                     <h3><?php echo $post->post_title;?></h3> 
@@ -81,7 +81,7 @@ global $post;
 								</div>-->
 								
                                 <div class="actualites-img-description">
-                                    <p><?php echo $post->post_content;?></p>
+                                    <?php echo $post->post_content;?>
                                     <div class="tags"> 
 										<b>Tages:</b><small>
 										<?php
@@ -101,25 +101,14 @@ global $post;
 									</small> 
 									</div>
                                 </div>
-                                <div class="actualites-comments">
-									<?php				
-									// If comments are open or we have at least one comment, load up the comment template.
-																
-									if ( comments_open() || get_comments_number() ) 
-									{
-										comments_template();
-									} 
-									?>
-							 
-						
-                                </div>
+                                
                             </div>
                         </div>
 						
 						
                         <div class="col-md-4">
                             <div class="standard-section3-column2">
-                                <h2>Dernières actualités</h2>
+                                <h2>Derni&#233;res actualit&#233;s</h2>
                                 <ul class="standard-column2-list">
 							   <?php 
 										$args=array

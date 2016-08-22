@@ -24,6 +24,7 @@
     <link href="<?php echo get_template_directory_uri();?>/css/style.css" rel="stylesheet">
     <link href="<?php echo get_template_directory_uri();?>/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo get_template_directory_uri();?>/css/animate.css" rel="stylesheet">
+    <link href="css/lightbox.css" rel="stylesheet">
    
     <!-- Modernizr -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -42,7 +42,7 @@ else
 ?>
     <div class="container">
         <div class="standard-section2-heading">
-            <h2><?php echo strtoupper (single_cat_title()); ?></h2>
+            <h2><?php echo strtoupper(single_cat_title()); ?></h2>
             <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
         </div>
     </div>     
@@ -56,8 +56,9 @@ else
         <h2>VOUS et le réseau de chaleur : <?php echo strtoupper (single_cat_title()); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
 		 
-				<h3><a href="<?php the_permalink();?>"><?php echo $post->post_title;?></a></h3>
-						       <p><?php echo wp_trim_words( $post->post_content, 50);?></p>	
+				<h3><?php echo $post->post_title;?></h3>
+				 <?php echo $post->post_content;?>	
+														   
 		   <?php endwhile; wp_reset_query(); ?>
     </div>
 </div>  
@@ -85,8 +86,6 @@ else
 					wp_reset_query();
 			   ?>
         </ul>
-        
-   
         
         <div class="standard-column-list3">
             <h4>TAGS</h4>

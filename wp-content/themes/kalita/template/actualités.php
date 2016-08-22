@@ -32,7 +32,7 @@ global $post;
 					(
 							'post_type'      =>'post',
 							'posts_per_page' => -1,
-							'order'          => 'ASC',
+							'order'          => 'DESC',
 					);
 					$act_post = new WP_Query($args);
 					

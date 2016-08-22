@@ -141,6 +141,9 @@ a.navbar-brand {
     background-color: #fff;
     border-color: transparent;
     height: 135px;
+            transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
 }
 
 ul.nav.navbar-nav.navbar-right .main-menu-item a {
@@ -238,6 +241,88 @@ li.main-menu-item {
     left: 0;
 }
 
+
+nav.navbar.navbar-default.small {
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    width: 100%;
+      -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+animation-duration: 1s;
+    -webkit-animation-duration:1s;
+    height: 100px;
+    z-index: 999;
+}  
+
+.navbar.navbar-default.small .navbar-header{
+    width: 10%;
+}
+
+nav.navbar.navbar-default.small ul.nav.navbar-nav.navbar-right{
+    margin-top: 25px;
+}
+
+.navbar.navbar-default.small .navbar-nav>li>a{
+    color: #fff;
+}
+
+.navbar.navbar-default.small a.comments{
+    width: 37px;
+    height: 37px;
+    margin-top: -32px;
+}
+
+.navbar.navbar-default.small .comments i, .navbar.navbar-default.small .comments-2 i{
+        font-size: 21px;
+}
+
+.navbar.navbar-default.small ul.nav.navbar-nav.navbar-right a:hover{
+    color: #00894c;
+        transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    background-color: transparent;
+}
+
+
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+}
+
+
+
+
 ul.nav.navbar-nav.navbar-right .main-menu-item .dropdown-menu li a:hover {
     background-color: #6e676d;
 }
@@ -252,7 +337,7 @@ a.comments {
     width: 45px;
     height: 45px;
     text-align: center;
-    margin-top: -33px;
+    margin-top: -38px;
 }
 
 .comments-2 {
@@ -1293,6 +1378,20 @@ span.glyphicon.glyphicon-chevron-right {
     color: #aaaaaa;
 }
 
+.panel-collapse.collapse.in a img, .panel-collapse.collapsing a img{
+    width: 130px;
+    border-radius: 10px;
+	display:inline-block;
+	margin-bottom:5px;
+}
+
+.panel.panel-default .panel-body{
+    margin-bottom: 10px;
+}  
+.panel-body{
+    padding: 0;
+}
+
 .faq-main-list .panel-group span.glyphicon.glyphicon-plus,
 .faq-main-list .panel-group span.glyphicon.glyphicon-minus {
     border: 2px solid #e5e5e5;
@@ -1376,9 +1475,11 @@ span.glyphicon.glyphicon-plus {
     margin-right: 15px;
 }
 
-.panel.panel-default .panel-body {
-    margin-left: 59px;
+.panel.panel-default .panel-collapse.collapse.in, .panel.panel-default .panel-collapse.collapse, .panel.panel-default .panel-collapse.collapsing {
+margin-left: 70px;
 }
+
+
 
 
 /*---------actualites-------*/

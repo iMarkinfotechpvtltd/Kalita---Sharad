@@ -674,6 +674,131 @@ add_action( 'init', 'codex_lactualité_de' );
 
 
 
+/************** START CODE FOR CREATE CUSTOM POST UN PEU D HISTOIRE ******************/ 
+
+function codex_Un_peu_d_histoire() {
+  $labels = array(
+    'name' => 'Un_peu_d_histoire',
+    'singular_name' => 'Un_peu_d_histoire',
+    'add_new' => 'Add Un_peu_d_histoire',
+    'add_new_item' => 'Add New Un_peu_d_histoire',
+    'edit_item' => 'Edit Un_peu_d_histoire',
+    'new_item' => 'New Un_peu_d_histoire',
+    'all_items' => 'All Un_peu_d_histoire',
+    'view_item' => 'View Un_peu_d_histoire',
+    'search_items' => 'Search Un_peu_d_histoire',
+    'not_found' =>  'No Un_peu_d_histoire found',
+    'not_found_in_trash' => 'No Un_peu_d_histoire found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'Un peu d histoire'
+  );
+   
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'Un_peu_d_histoire' ), 
+    'capability_type' => 'post',
+    'has_archive' => true, 
+    'hierarchical' => false,
+    'menu_position' => null,
+	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  ); 
+
+  register_post_type( 'Un_peu_d_histoire', $args );
+}
+add_action( 'init', 'codex_Un_peu_d_histoire' ); 
+
+/************** END OF CODE FOR CREATE CUSTOM POST UN PEU D HISTOIRE ******************/ 		
+
+
+
+/************** START CODE FOR CREATE CUSTOM POST LÉTAT_DE_VOTRE_RÉSEAU ******************/ 
+
+function codex_lien_utiles() {
+  $labels = array(
+    'name' => 'lien_utiles',
+    'singular_name' => 'lien_utiles',
+    'add_new' => 'Add lien_utiles',
+    'add_new_item' => 'Add New lien_utiles',
+    'edit_item' => 'Edit lien_utiles',
+    'new_item' => 'New lien_utiles',
+    'all_items' => 'All lien_utiles',
+    'view_item' => 'View lien_utiles',
+    'search_items' => 'Search lien_utiles',
+    'not_found' =>  'No lien_utiles found',
+    'not_found_in_trash' => 'No lien_utiles found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'Lien_utiles'
+  );
+   
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'lien_utiles' ), 
+    'capability_type' => 'post',
+    'has_archive' => true, 
+    'hierarchical' => false,
+    'menu_position' => null,
+	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  ); 
+
+  register_post_type( 'lien_utiles', $args );
+}
+add_action( 'init', 'codex_lien_utiles' ); 
+
+/************** END OF CODE FOR CREATE CUSTOM POST LÉTAT_DE_VOTRE_RÉSEAU ******************/ 		
+
+
+/************** START CODE FOR CREATE CUSTOM POST LÉTAT_DE_VOTRE_RÉSEAU ******************/ 
+
+function codex_Létat_de_votre_réseaus() {
+  $labels = array(
+    'name' => 'Létat_de_votre_réseaus',
+    'singular_name' => 'Létat_de_votre_réseaus',
+    'add_new' => 'Add Létat_de_votre_réseaus',
+    'add_new_item' => 'Add New Létat_de_votre_réseaus',
+    'edit_item' => 'Edit Létat_de_votre_réseaus',
+    'new_item' => 'New Létat_de_votre_réseaus',
+    'all_items' => 'All Létat_de_votre_réseaus',
+    'view_item' => 'View Létat_de_votre_réseaus',
+    'search_items' => 'Search Létat_de_votre_réseaus',
+    'not_found' =>  'No Létat_de_votre_réseaus found',
+    'not_found_in_trash' => 'No Létat_de_votre_réseaus found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'Létat de votre réseau'
+  );
+   
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true, 
+    'show_in_menu' => true, 
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'Létat_de_votre_réseaus' ), 
+    'capability_type' => 'post',
+    'has_archive' => true, 
+    'hierarchical' => false,
+    'menu_position' => null,
+	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  ); 
+
+  register_post_type( 'Létat_de_votre_réseaus', $args );
+}
+add_action( 'init', 'codex_Létat_de_votre_réseaus' ); 
+
+/************** END OF CODE FOR CREATE CUSTOM POST LÉTAT_DE_VOTRE_RÉSEAU ******************/ 		
+
+
+
 
 // Modify comments header text in comments
 add_filter( 'genesis_title_comments', 'child_title_comments');
@@ -733,3 +858,25 @@ function default_comments_on1( $data ) {
     return $data;
 }
 add_filter( 'wp_insert_post_data', 'default_comments_on1' );
+
+
+/**************************Start Wordpress Logo Function*******************************************/
+
+function my_loginlogo()
+{
+echo '<style type="text/css">
+  h1 a {
+    background-image: url(' . get_template_directory_uri() . '/images/logo.jpg) !important;
+     
+  }
+</style>';
+}
+add_action('login_head', 'my_loginlogo');
+
+function put_my_url()
+{
+  return site_url();
+}
+add_filter('login_headerurl', 'put_my_url');
+
+/**************************End of Wordpress Logo Function***************************************************/
