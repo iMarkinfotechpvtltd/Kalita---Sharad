@@ -6,11 +6,11 @@
 <?php get_header(); 
 global $post;
 
-		function get_numerics ($str)
-		{
-		preg_match_all('/\d+/', $str, $matches);
-		return $matches[0];
-		}
+		// function get_numerics ($str)
+		// {
+		// preg_match_all('/\d+/', $str, $matches);
+		// return $matches[0];
+		//}
 ?>
   <section class="section3"> <i class="fa fa-fw fa-twitter"></i>
         <p>kalita <a href="<?php echo get_option_tree('twitter');?>"><?php echo get_option_tree('twitter');?></a> - 

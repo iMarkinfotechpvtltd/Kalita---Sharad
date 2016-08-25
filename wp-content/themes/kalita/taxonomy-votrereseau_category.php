@@ -28,6 +28,7 @@ $term_id=$terms['0']->term_id;
 
 $value = get_field('category_image','votrereseau_category_'.$term_id);
 
+$banner_title=get_field('category_banner_title','votrereseau_category_'.$term_id);
 
 if ( $value ) 
 {
@@ -45,7 +46,7 @@ else
     <div class="container">
         <div class="standard-section2-heading">
             <h2><?php echo strtoupper(single_cat_title()); ?></h2>
-            <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
+            <p><?php echo $banner_title;?></p>
         </div>
     </div>    
 </section>
@@ -58,8 +59,12 @@ else
         <h2>VOTRE RESEAU : <?php echo strtoupper (single_cat_title()); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
 		 
-				<h3><?php echo $post->post_title;?></h3>
-				 <?php echo $post->post_content;?>								   
+				<h3><?php //echo $post->post_title;
+				 the_title();?>
+				</h3>
+				 <?php //echo $post->post_content;
+				 the_content();
+				 ?>								   
 		   <?php endwhile; wp_reset_query(); ?>
     </div>
 </div>  

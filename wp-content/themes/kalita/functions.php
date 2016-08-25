@@ -880,3 +880,9 @@ function put_my_url()
 add_filter('login_headerurl', 'put_my_url');
 
 /**************************End of Wordpress Logo Function***************************************************/
+
+function get_numerics ($str)
+{
+preg_match_all('/\d+/', $str, $matches);
+return $matches[0];
+}

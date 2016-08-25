@@ -27,7 +27,9 @@ $term_id=$terms['0']->term_id;
 
 $value = get_field('category_image','vousetvotre_category_'.$term_id);
 
-if ( $value ) 
+$banner_title=get_field('category_banner_title','vousetvotre_category_'.$term_id);
+
+if ($value) 
 {
 ?>
 	<section class="standard-section2" style="background-image:url('<?php echo $value['url']; ?>')">
@@ -43,7 +45,7 @@ else
     <div class="container">
         <div class="standard-section2-heading">
             <h2><?php echo strtoupper(single_cat_title()); ?></h2>
-            <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
+            <p><?php echo $banner_title;?></p>
         </div>
     </div>     
 </section>
@@ -56,8 +58,12 @@ else
         <h2>VOUS et le réseau de chaleur : <?php echo strtoupper (single_cat_title()); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
 		 
-				<h3><?php echo $post->post_title;?></h3>
-				 <?php echo $post->post_content;?>	
+				<h3><?php //echo $post->post_title;?>
+				<?php the_title();?>
+				</h3>
+				 <?php //echo $post->post_content;
+				 the_content();
+				 ?>	
 														   
 		   <?php endwhile; wp_reset_query(); ?>
     </div>

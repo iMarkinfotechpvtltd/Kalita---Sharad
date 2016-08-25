@@ -6,13 +6,56 @@
 <?php get_header(); 
 global $post;
 
-		function get_numerics ($str)
-		{
-		preg_match_all('/\d+/', $str, $matches);
-		return $matches[0];
-		}
+	// function get_numerics ($str)
+	// {
+	// preg_match_all('/\d+/', $str, $matches);
+	// return $matches[0];
+	// }
 ?>
-  <section class="section3"> <i class="fa fa-fw fa-twitter"></i>
+<!--script use for load more acqulities--->
+<script>
+jQuery(document).ready(function()
+{
+	jQuery('#page_val').val();
+});
+
+
+function pagination()
+{
+   
+	var page_val=jQuery('#page_val').val();
+	var page_val1=parseInt(page_val)+1;
+	
+	//alert(page_val);
+	//alert(page_val1);
+	
+	jQuery('#loading_sec').show();
+	jQuery.ajax({
+	type: "GET",
+	url:"<?php bloginfo('template_url'); ?>/ajax/ajax.php",
+	data:{page_val1:page_val1,format:'raw'},
+	success:function(resp) 
+	{
+		alert(resp);
+		if( resp !="")
+		{
+			
+			// jQuery('#result').empty().append(resp)
+			
+			jQuery('#loading_sec').hide();
+			jQuery(resp).insertAfter(jQuery('.actualities-main>div:last')).fadeIn('slow');
+			jQuery('#page_val').val(page_val1); 
+			
+		}
+		else if( resp =="")
+		{
+		jQuery("#loading_sec").hide();
+		}
+	} 
+	});
+}
+</script>
+  <section class="section3-acc"> <i class="fa fa-fw fa-twitter"></i>
         <p>kalita <a href="<?php echo get_option_tree('twitter');?>"><?php echo get_option_tree('twitter');?></a> - 
 		<?php echo get_option_tree('twitter_news_text');?></p>
     </section>
@@ -20,8 +63,10 @@ global $post;
         <div class="actualities">
             <div class="container">
                 <h5>ACTUALITES</h5>
+				<div class="actualities_ajax"><!--for load more-->
+				
                 <div class="actualities-main">
-					<div class="mosaicflow__column">
+					
 				<?php 
 				    global $q;
 					global $g;
@@ -31,7 +76,7 @@ global $post;
 					$args=array
 					(
 							'post_type'      =>'post',
-							'posts_per_page' => -1,
+							'posts_per_page' => 9,
 							'order'          => 'DESC',
 					);
 					$act_post = new WP_Query($args);
@@ -40,7 +85,10 @@ global $post;
 					while( $act_post -> have_posts() ) : $act_post -> the_post();
 					
 						$show=get_field('show_on_front',$post->ID);
-	
+	if($i==0 || $i==3|| $i==6)
+	{
+		echo '<div class="mosaicflow__column '.$i.'">';
+	}
 						switch ($show) 
 						{
 							case "Image":	
@@ -62,7 +110,7 @@ global $post;
 								?>
 										<div class="mosaicflow__item">
 											<div class="actualities-slider">
-												<div id="myCarousel<?php echo $g;?>" class="carousel slide" data-ride="carousel1">
+												<div id="myCarousel<?php echo $post->ID;?>" class="carousel slide" data-ride="carousel1">
 													<div class="carousel-inner" role="listbox">
 												<?php
 												  $one1 = get_post_meta($post->ID,'gallery',true); 	
@@ -90,8 +138,8 @@ global $post;
 													}
 												?>
 													</div>
-													<a class="left carousel-control" href="#myCarousel<?php echo $g;?>" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-													<a class="right carousel-control" href="#myCarousel<?php echo $g;?>" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+													<a class="left carousel-control" href="#myCarousel<?php echo $post->ID;?>" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+													<a class="right carousel-control" href="#myCarousel<?php echo $post->ID;?>" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
 												</div>
 												<div class="actualities-inner">
 														<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
@@ -191,17 +239,30 @@ global $post;
 					{
 					?>
 						</div>
-							<div class="mosaicflow__column">
+							
 					<?php
 					}						
 					endwhile; 
-					
+					wp_reset_query();
 				?>      
                 </div>
             </div>
+			</div>
+			<?php
+			if($i==9){
+				?>
 			<div class="actualities-btn">
-                    <button type="submit" class="show-more-btn">SHOW MORE </button>
+						<input type="hidden" name="page_val" id="page_val" value="1">
+						<input type="Submit" value="SHOW MORE"  onclick="pagination();" class="show-more-btn ">
+                    <!--<button type="submit" class="show-more-btn">SHOW MORE </button>-->
+					<div id="loading_sec" style="display:none" align="center">
+								<img src="<?php echo  get_template_directory_uri(); ?>/images/482.gif" id="loader">
+								
+					</div>
             </div>
+			<?php	
+			}
+			?>
         </div>
     </section> 
  
