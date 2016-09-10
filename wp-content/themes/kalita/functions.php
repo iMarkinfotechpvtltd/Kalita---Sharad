@@ -437,19 +437,19 @@ add_image_size('actulities_inner_image_size',1100,619);
 
 function my_custom_post_votreReseau() {
 $labels = array(
-  'name' => 'votreReseau',
-  'singular_name' => 'votreReseau',
-  'add_new' => 'Add votreReseau',
-  'add_new_item' => 'Add New votreReseau',
-  'edit_item' => 'Edit votreReseau',
-  'new_item' => 'New votreReseau',
-  'all_items' => 'All votreReseau',
-  'view_item' => 'View votreReseau',
-  'search_items' => 'Search votreReseau',
-  'not_found' =>  'No votreReseau found',
-  'not_found_in_trash' => 'No votreReseau found in Trash', 
+  'name' => 'VotreReseau',
+  'singular_name' => 'VotreReseau',
+  'add_new' => 'Add VotreReseau',
+  'add_new_item' => 'Add New VotreReseau',
+  'edit_item' => 'Edit VotreReseau',
+  'new_item' => 'New VotreReseau',
+  'all_items' => 'All VotreReseau',
+  'view_item' => 'View VotreReseau',
+  'search_items' => 'Search VotreReseau',
+  'not_found' =>  'No VotreReseau found',
+  'not_found_in_trash' => 'No VotreReseau found in Trash', 
   'parent_item_colon' => '',
-  'menu_name' => 'votreReseau'
+  'menu_name' => 'VotreReseau'
 );
 
 $args = array(
@@ -554,19 +554,19 @@ add_action( 'init', 'my_taxonomies_vousEtVotre');
 
 function codex_QuestionFrequentes() {
   $labels = array(
-    'name' => 'Question Frequentes',
-    'singular_name' => 'QuestionFrequentes',
-    'add_new' => 'Add QuestionFrequentes',
-    'add_new_item' => 'Add New QuestionFrequentes',
-    'edit_item' => 'Edit QuestionFrequentes',
-    'new_item' => 'New QuestionFrequentes',
-    'all_items' => 'All QuestionFrequentes',
-    'view_item' => 'View QuestionFrequentes',
-    'search_items' => 'Search QuestionFrequentes',
-    'not_found' =>  'No QuestionFrequentes found',
-    'not_found_in_trash' => 'No QuestionFrequentes found in Trash', 
+    'name' => 'FAQ',
+    'singular_name' => 'FAQ',
+    'add_new' => 'Add FAQ',
+    'add_new_item' => 'Add New FAQ',
+    'edit_item' => 'Edit FAQ',
+    'new_item' => 'New FAQ',
+    'all_items' => 'All FAQ',
+    'view_item' => 'View FAQ',
+    'search_items' => 'Search FAQ',
+    'not_found' =>  'No FAQ found',
+    'not_found_in_trash' => 'No FAQ found in Trash', 
     'parent_item_colon' => '',
-    'menu_name' => 'QuestionFrequentes'
+    'menu_name' => 'FAQ'
   );
    
   $args = array(
@@ -593,82 +593,82 @@ add_action( 'init', 'codex_QuestionFrequentes' );
 
 /************** START CODE FOR CREATE CUSTOM POST L’ÉTAT DE VOTRE RÉSEAU ******************/ 
 
-function codex_létat_de() {
-  $labels = array(
-    'name' => 'létat_de',
-    'singular_name' => 'létat_de',
-    'add_new' => 'Add létat_de',
-    'add_new_item' => 'Add New létat_de',
-    'edit_item' => 'Edit létat_de',
-    'new_item' => 'New létat_de',
-    'all_items' => 'All létat_de',
-    'view_item' => 'View létat_de',
-    'search_items' => 'Search létat_de',
-    'not_found' =>  'No létat_de found',
-    'not_found_in_trash' => 'No létat_de found in Trash', 
-    'parent_item_colon' => '',
-    'menu_name' => 'L`état_de'
-  );
+// function codex_létat_de() {
+  // $labels = array(
+    // 'name' => 'létat_de',
+    // 'singular_name' => 'létat_de',
+    // 'add_new' => 'Add létat_de',
+    // 'add_new_item' => 'Add New létat_de',
+    // 'edit_item' => 'Edit létat_de',
+    // 'new_item' => 'New létat_de',
+    // 'all_items' => 'All létat_de',
+    // 'view_item' => 'View létat_de',
+    // 'search_items' => 'Search létat_de',
+    // 'not_found' =>  'No létat_de found',
+    // 'not_found_in_trash' => 'No létat_de found in Trash', 
+    // 'parent_item_colon' => '',
+    // 'menu_name' => 'L`état_de'
+  // );
    
-  $args = array(
-    'labels' => $labels,
-    'public' => true,
-    'publicly_queryable' => true,
-    'show_ui' => true, 
-    'show_in_menu' => true, 
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'létat_de' ), 
-    'capability_type' => 'post',
-    'has_archive' => true, 
-    'hierarchical' => false,
-    'menu_position' => null,
-	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
-  ); 
+  // $args = array(
+    // 'labels' => $labels,
+    // 'public' => true,
+    // 'publicly_queryable' => true,
+    // 'show_ui' => true, 
+    // 'show_in_menu' => true, 
+    // 'query_var' => true,
+    // 'rewrite' => array( 'slug' => 'létat_de' ), 
+    // 'capability_type' => 'post',
+    // 'has_archive' => true, 
+    // 'hierarchical' => false,
+    // 'menu_position' => null,
+	// 'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  // ); 
 
-  register_post_type( 'létat_de', $args );
-}
-add_action( 'init', 'codex_létat_de' ); 
+  // register_post_type( 'létat_de', $args );
+// }
+// add_action( 'init', 'codex_létat_de' ); 
 
 /************** END OF CODE FOR CREATE CUSTOM POST L’ÉTAT DE VOTRE RÉSEAU ******************/ 		
 
 
 /************** START CODE FOR CREATE CUSTOM POST L’ACTUALITÉ DE VOTRE RÉSEAU ******************/ 
 
-function codex_lactualité_de() {
-  $labels = array(
-    'name' => 'lactualité_de',
-    'singular_name' => 'lactualité_de',
-    'add_new' => 'Add lactualité_de',
-    'add_new_item' => 'Add New lactualité_de',
-    'edit_item' => 'Edit lactualité_de',
-    'new_item' => 'New lactualité_de',
-    'all_items' => 'All lactualité_de',
-    'view_item' => 'View lactualité_de',
-    'search_items' => 'Search lactualité_de',
-    'not_found' =>  'No lactualité_de found',
-    'not_found_in_trash' => 'No lactualité_de found in Trash', 
-    'parent_item_colon' => '',
-    'menu_name' => 'L’actualité de'
-  );
+// function codex_lactualité_de() {
+  // $labels = array(
+    // 'name' => 'lactualité_de',
+    // 'singular_name' => 'lactualité_de',
+    // 'add_new' => 'Add lactualité_de',
+    // 'add_new_item' => 'Add New lactualité_de',
+    // 'edit_item' => 'Edit lactualité_de',
+    // 'new_item' => 'New lactualité_de',
+    // 'all_items' => 'All lactualité_de',
+    // 'view_item' => 'View lactualité_de',
+    // 'search_items' => 'Search lactualité_de',
+    // 'not_found' =>  'No lactualité_de found',
+    // 'not_found_in_trash' => 'No lactualité_de found in Trash', 
+    // 'parent_item_colon' => '',
+    // 'menu_name' => 'L’actualité de'
+  // );
    
-  $args = array(
-    'labels' => $labels,
-    'public' => true,
-    'publicly_queryable' => true,
-    'show_ui' => true, 
-    'show_in_menu' => true, 
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'lactualité_de' ), 
-    'capability_type' => 'post',
-    'has_archive' => true, 
-    'hierarchical' => false,
-    'menu_position' => null,
-	'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
-  ); 
+  // $args = array(
+    // 'labels' => $labels,
+    // 'public' => true,
+    // 'publicly_queryable' => true,
+    // 'show_ui' => true, 
+    // 'show_in_menu' => true, 
+    // 'query_var' => true,
+    // 'rewrite' => array( 'slug' => 'lactualité_de' ), 
+    // 'capability_type' => 'post',
+    // 'has_archive' => true, 
+    // 'hierarchical' => false,
+    // 'menu_position' => null,
+	// 'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+  // ); 
 
-  register_post_type( 'lactualité_de', $args );
-}
-add_action( 'init', 'codex_lactualité_de' ); 
+  // register_post_type( 'lactualité_de', $args );
+// }
+// add_action( 'init', 'codex_lactualité_de' ); 
 
 /************** END OF CODE FOR CREATE CUSTOM POST L’ACTUALITÉ DE VOTRE RÉSEAU ******************/ 		
 
@@ -678,19 +678,19 @@ add_action( 'init', 'codex_lactualité_de' );
 
 function codex_Un_peu_d_histoire() {
   $labels = array(
-    'name' => 'Un_peu_d_histoire',
-    'singular_name' => 'Un_peu_d_histoire',
-    'add_new' => 'Add Un_peu_d_histoire',
-    'add_new_item' => 'Add New Un_peu_d_histoire',
-    'edit_item' => 'Edit Un_peu_d_histoire',
-    'new_item' => 'New Un_peu_d_histoire',
-    'all_items' => 'All Un_peu_d_histoire',
-    'view_item' => 'View Un_peu_d_histoire',
-    'search_items' => 'Search Un_peu_d_histoire',
-    'not_found' =>  'No Un_peu_d_histoire found',
-    'not_found_in_trash' => 'No Un_peu_d_histoire found in Trash', 
+    'name' => 'Histoire',
+    'singular_name' => 'Histoire',
+    'add_new' => 'Add Histoire',
+    'add_new_item' => 'Add New Histoire',
+    'edit_item' => 'Edit Histoire',
+    'new_item' => 'New Histoire',
+    'all_items' => 'All Histoire',
+    'view_item' => 'View Histoire',
+    'search_items' => 'Search Histoire',
+    'not_found' =>  'No Histoire found',
+    'not_found_in_trash' => 'No Histoire found in Trash', 
     'parent_item_colon' => '',
-    'menu_name' => 'Un peu d histoire'
+    'menu_name' => 'Histoire'
   );
    
   $args = array(
@@ -720,21 +720,21 @@ add_action( 'init', 'codex_Un_peu_d_histoire' );
 
 function codex_lien_utiles() {
   $labels = array(
-    'name' => 'lien_utiles',
-    'singular_name' => 'lien_utiles',
-    'add_new' => 'Add lien_utiles',
-    'add_new_item' => 'Add New lien_utiles',
-    'edit_item' => 'Edit lien_utiles',
-    'new_item' => 'New lien_utiles',
-    'all_items' => 'All lien_utiles',
-    'view_item' => 'View lien_utiles',
-    'search_items' => 'Search lien_utiles',
-    'not_found' =>  'No lien_utiles found',
-    'not_found_in_trash' => 'No lien_utiles found in Trash', 
+    'name' => 'LienUtiles',
+    'singular_name' => 'LienUtiles',
+    'add_new' => 'Add LienUtiles',
+    'add_new_item' => 'Add New LienUtiles',
+    'edit_item' => 'Edit LienUtiles',
+    'new_item' => 'New LienUtiles',
+    'all_items' => 'All LienUtiles',
+    'view_item' => 'View LienUtiles',
+    'search_items' => 'Search LienUtiles',
+    'not_found' =>  'No LienUtiles found',
+    'not_found_in_trash' => 'No LienUtiles found in Trash', 
     'parent_item_colon' => '',
-    'menu_name' => 'Lien_utiles'
+    'menu_name' => 'Lien Utiles'
   );
-   
+    
   $args = array(
     'labels' => $labels,
     'public' => true,
@@ -761,19 +761,19 @@ add_action( 'init', 'codex_lien_utiles' );
 
 function codex_Létat_de_votre_réseaus() {
   $labels = array(
-    'name' => 'Létat_de_votre_réseaus',
-    'singular_name' => 'Létat_de_votre_réseaus',
-    'add_new' => 'Add Létat_de_votre_réseaus',
-    'add_new_item' => 'Add New Létat_de_votre_réseaus',
-    'edit_item' => 'Edit Létat_de_votre_réseaus',
-    'new_item' => 'New Létat_de_votre_réseaus',
-    'all_items' => 'All Létat_de_votre_réseaus',
-    'view_item' => 'View Létat_de_votre_réseaus',
-    'search_items' => 'Search Létat_de_votre_réseaus',
-    'not_found' =>  'No Létat_de_votre_réseaus found',
-    'not_found_in_trash' => 'No Létat_de_votre_réseaus found in Trash', 
+    'name' => 'EtatReseau',
+    'singular_name' => 'EtatReseau',
+    'add_new' => 'Add EtatReseau',
+    'add_new_item' => 'Add New EtatReseau',
+    'edit_item' => 'Edit EtatReseau',
+    'new_item' => 'New EtatReseau',
+    'all_items' => 'All EtatReseau',
+    'view_item' => 'View EtatReseau',
+    'search_items' => 'Search EtatReseau',
+    'not_found' =>  'No EtatReseau found',
+    'not_found_in_trash' => 'No EtatReseau found in Trash', 
     'parent_item_colon' => '',
-    'menu_name' => 'Létat de votre réseau'
+    'menu_name' => 'EtatReseau'
   );
    
   $args = array(
@@ -886,3 +886,62 @@ function get_numerics ($str)
 preg_match_all('/\d+/', $str, $matches);
 return $matches[0];
 }
+
+
+
+/****************to get the current menu item ans sub item****************/
+
+
+// add hook
+add_filter( 'wp_nav_menu_objects', 'my_wp_nav_menu_objects_sub_menu', 10, 2 );
+// filter_hook function to react on sub_menu flag
+function my_wp_nav_menu_objects_sub_menu( $sorted_menu_items, $args ) {
+  if ( isset( $args->sub_menu ) ) {
+    $root_id = 0;
+    
+    // find the current menu item
+    foreach ( $sorted_menu_items as $menu_item ) {
+      if ( $menu_item->current ) {
+        // set the root id based on whether the current menu item has a parent or not
+        $root_id = ( $menu_item->menu_item_parent ) ? $menu_item->menu_item_parent : $menu_item->ID;
+        break;
+      }
+    }
+    
+    // find the top level parent
+    if ( ! isset( $args->direct_parent ) ) {
+      $prev_root_id = $root_id;
+      while ( $prev_root_id != 0 ) {
+        foreach ( $sorted_menu_items as $menu_item ) {
+          if ( $menu_item->ID == $prev_root_id ) {
+            $prev_root_id = $menu_item->menu_item_parent;
+            // don't set the root_id to 0 if we've reached the top of the menu
+            if ( $prev_root_id != 0 ) $root_id = $menu_item->menu_item_parent;
+            break;
+          } 
+        }
+      }
+    }
+    $menu_item_parents = array();
+    foreach ( $sorted_menu_items as $key => $item ) {
+      // init menu_item_parents
+      if ( $item->ID == $root_id ) $menu_item_parents[] = $item->ID;
+      if ( in_array( $item->menu_item_parent, $menu_item_parents ) ) {
+        // part of sub-tree: keep!
+        $menu_item_parents[] = $item->ID;
+      } else if ( ! ( isset( $args->show_parent ) && in_array( $item->ID, $menu_item_parents ) ) ) {
+        // not part of sub-tree: away with it!
+        unset( $sorted_menu_items[$key] );
+      }
+    }
+    
+    return $sorted_menu_items;
+  } else {
+    return $sorted_menu_items;
+  }
+}
+
+
+
+
+

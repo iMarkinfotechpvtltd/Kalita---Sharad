@@ -54,7 +54,7 @@ else
 <section class="standard-section3">
 <div class="container">
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-8 col-sm-8">
     <div class="standard-section3-column1">
         <h2>VOTRE RESEAU : <?php echo strtoupper (single_cat_title()); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
@@ -69,13 +69,15 @@ else
     </div>
 </div>  
 	
-	<div class="col-md-4">
+	<div class="col-md-4 col-sm-4">
     <div class="standard-section3-column2">
-        
+         
         <h2>Dernières actualités</h2>
         
         <ul class="standard-column2-list">
            <?php 
+		   
+		   
 					$args=array
 					(
 							'post_type'      =>'post',

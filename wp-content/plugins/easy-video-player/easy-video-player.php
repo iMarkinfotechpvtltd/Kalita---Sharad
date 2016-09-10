@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Easy Video Player
-Version: 1.1.3
+Version: 1.1.4
 Plugin URI: http://noorsplugin.com/wordpress-video-plugin/
 Author: naa986
 Author URI: http://noorsplugin.com/
@@ -17,7 +17,7 @@ if (!class_exists('EASY_VIDEO_PLAYER')) {
 
     class EASY_VIDEO_PLAYER {
 
-        var $plugin_version = '1.1.3';
+        var $plugin_version = '1.1.4';
 
         function __construct() {
             define('EASY_VIDEO_PLAYER_VERSION', $this->plugin_version);
@@ -137,6 +137,7 @@ function evp_embed_video_handler($atts) {
                 'loop' => '',
                 'muted' => '',
                 'preload' => 'metadata',
+                'video_id' => '',
                 'class' => '',
                 'template' => '',
                     ), $atts));
@@ -163,6 +164,10 @@ function evp_embed_video_handler($atts) {
             $attr['preload'] = $preload;
         }
         return wp_video_shortcode($attr);
+    }
+    //custom video id
+    if(!empty($video_id)){
+        $video_id = ' id="'.$video_id.'"';
     }
     //autoplay
     if ($autoplay == "true") {
@@ -220,7 +225,7 @@ EOT;
     
     $output = <<<EOT
         <div id="$player" data-ratio="$ratio" class="{$classes}">
-            <video{$autoplay}{$loop}{$muted}>
+            <video{$video_id}{$autoplay}{$loop}{$muted}>
                <source type="video/mp4" src="$url"/>
             </video>
         </div>

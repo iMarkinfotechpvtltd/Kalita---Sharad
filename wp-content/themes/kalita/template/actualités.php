@@ -36,7 +36,7 @@ function pagination()
 	data:{page_val1:page_val1,format:'raw'},
 	success:function(resp) 
 	{
-		alert(resp);
+		//alert(resp);
 		if( resp !="")
 		{
 			
@@ -66,18 +66,22 @@ function pagination()
 				<div class="actualities_ajax"><!--for load more-->
 				
                 <div class="actualities-main">
-					
+				
+				<div class="clearfix mosaicflow"> 
+				
 				<?php 
 				    global $q;
 					global $g;
 					$g=1;
 					$q=1;
 					$i=0;
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$args=array
 					(
 							'post_type'      =>'post',
 							'posts_per_page' => 9,
 							'order'          => 'DESC',
+							'paged'          =>$paged
 					);
 					$act_post = new WP_Query($args);
 					
@@ -85,10 +89,23 @@ function pagination()
 					while( $act_post -> have_posts() ) : $act_post -> the_post();
 					
 						$show=get_field('show_on_front',$post->ID);
-	if($i==0 || $i==3|| $i==6)
-	{
-		echo '<div class="mosaicflow__column '.$i.'">';
-	}
+	                    
+						if($show=='Content')
+						{
+						?>	
+								<div class="mosaicflow__item">
+									<div class="actualities-inner"> <h2><a href="<?php the_permalink();?>">
+									    <?php echo strtoupper (the_title());?></a></h2>
+										<?php the_content();?> 
+									</div>
+								</div>
+
+						<?php 
+						}
+						
+						else
+						{
+						
 						switch ($show) 
 						{
 							case "Image":	
@@ -97,9 +114,9 @@ function pagination()
 										<div class="actualities-img"><?php the_post_thumbnail('actualitie_image_size');?> 
 											<div class="actualities-inner"> <h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
 											<?php
-												$comments_count = wp_count_comments( $post->ID );?>
+												//$comments_count = wp_count_comments( $post->ID );?>
 											
-												<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href="#"><?php echo $comments_count->total_comments;?> Comments</a></small> 
+												<?php the_content();?> 
 											</div>
 										</div>
 									</div>
@@ -143,9 +160,7 @@ function pagination()
 												</div>
 												<div class="actualities-inner">
 														<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-													<?php the_content();?> <small><?php echo get_the_date(); ?><a href="">
-													<?php $comments_count = wp_count_comments( $post->ID );
-													echo $comments_count->total_comments;?> Comments</a></small> 
+													<?php the_content();?>
 												</div>
 											</div>
 										</div>
@@ -166,9 +181,7 @@ function pagination()
 										
 										<div class="actualities-inner">
 											<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-											<?php the_content();?> <small><?php echo get_the_date(); ?> / <a href=""> 
-											<?php $comments_count = wp_count_comments( $post->ID );
-											echo $comments_count->total_comments;?> Comments</a></small> 
+											<?php the_content();?> 
 										</div>
 									</div>
 								</div>
@@ -178,18 +191,15 @@ function pagination()
 							case "Video":
 								
 								?>
-										<div class="mosaicflow__item">
-											<div class="actualities-video"> 
-											<?php the_field('video',$act_post->ID);?> 
-												<div class="actualities-inner">
-													<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
-													<?php the_content();?>
-													<small><?php echo get_the_date(); ?> / <a href=""> 
-													<?php $comments_count = wp_count_comments( $post->ID );
-													 echo $comments_count->total_comments;?> Comments</a></small> 
-												</div>
+									<div class="mosaicflow__item">
+										<div class="actualities-video"> 
+										<?php the_field('video',$act_post->ID);?> 
+											<div class="actualities-inner">
+											<h2><a href="<?php the_permalink();?>"><?php echo strtoupper (the_title());?></a></h2>
+												<?php the_content();?>
 											</div>
 										</div>
+									</div>
 									
 								<?php break;
 
@@ -200,9 +210,7 @@ function pagination()
 							?>		
 									<div class="mosaicflow__item">
 											<div class="actualities-quote2">
-												<div class="actualities-inner"> <small><?php the_title();?><a href=""> 
-												<?php $comments_count = wp_count_comments( $post->ID );
-												echo $comments_count->total_comments;?> Comments</a></small> 
+												<div class="actualities-inner"> <small><?php the_title();?></small> 
 													<div class="quotes">
 														<?php the_content();?>
 													</div>
@@ -216,8 +224,7 @@ function pagination()
 							?>
 									<div class="mosaicflow__item">
 										<div class="actualities-quote">
-											<div class="actualities-inner"> <small><?php the_title();?><a href=""> <?php $comments_count = wp_count_comments( $post->ID );
-											echo $comments_count->total_comments;?> Comments</a></small>
+											<div class="actualities-inner"> <small><?php the_title();?></small>
 												<div class="quotes">
 													<?php the_content();?>
 												</div>
@@ -232,40 +239,55 @@ function pagination()
 							<?php break;
                             								
 							default:
-								echo "Case Default Front end show only image";
+								echo "Oops ! noting select for show front end";
 						}//end of switch
-					$i++;
-					if($i%3==0)//using for change column div 
-					{
-					?>
-						</div>
-							
-					<?php
-					}						
+					}//end of else
+					$i++;				
 					endwhile; 
 					wp_reset_query();
 				?>      
                 </div>
             </div>
-			</div>
-			<?php
-			if($i==9){
+		</div>
+	</div>
+	
+	
+			
+<!--******************************* START PAGINATION CODE ************************-->		
+
+<?php
+	if($act_post->max_num_pages>1)
+	{
+		?>
+		<ul class="pagination">
+   <?php
+			if ($paged > 1) 
+			{ 
 				?>
-			<div class="actualities-btn">
-						<input type="hidden" name="page_val" id="page_val" value="1">
-						<input type="Submit" value="SHOW MORE"  onclick="pagination();" class="show-more-btn ">
-                    <!--<button type="submit" class="show-more-btn">SHOW MORE </button>-->
-					<div id="loading_sec" style="display:none" align="center">
-								<img src="<?php echo  get_template_directory_uri(); ?>/images/482.gif" id="loader">
-								
-					</div>
-            </div>
-			<?php	
+					<li><a href="<?php echo $link.'?paged=' . ($paged -1); //prev link ?>"><</a><li>
+                <?php 
 			}
-			?>
+			for($i=1;$i<=$act_post->max_num_pages;$i++)
+			{
+				?>
+				<li><a href="<?php echo $link.'?paged=' . $i; ?>" <?php echo ($paged==$i)? 'class="selected"':'';?>><?php echo $i;?></a></li>
+				<?php
+			}
+			if($paged < $act_post->max_num_pages)
+			{
+				?>
+				<li><a href="<?php echo $link.'?paged=' . ($paged + 1); //next link ?>">></a></li>
+				<?php 
+			}
+				?>
+	<?php 
+	}
+	?>
+	
+<!--****************************** END OF PAGINATION CODE ****************************-->	
+
+			
         </div>
     </section> 
- 
- 
  
 <?php get_footer(); ?>

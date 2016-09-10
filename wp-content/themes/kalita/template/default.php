@@ -1,6 +1,6 @@
 <?php
 /*
- Template Name: Default Template
+ Template Name: My Default Template
  */
 ?>
 <?php get_header(); 
@@ -30,8 +30,10 @@ else
 ?>
     <div class="container">
         <div class="standard-section2-heading">
-            <h2><?php echo strtoupper ($post->post_title); ?></h2>
-            <p>Lorem ipsum dolor sit amet consectetuer  adispiscing elit.</p>
+            <h2><?php //echo strtoupper ($post->post_title); 
+			echo $post->post_title;
+			?></h2>
+            
         </div>
     </div>    
 </section>
@@ -42,18 +44,20 @@ else
 <section class="standard-section3">
 <div class="container">
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-8 col-sm-8">
     <div class="standard-section3-column1">
-        <h2><?php echo strtoupper ($post->post_title); ?> :</h2>
+        <h2><?php echo strtoupper ($post->post_title); ?></h2>
          <?php while ( have_posts() ) : the_post(); ?>
 		 
-				<?php echo $post->post_content;?>	
+				<?php //echo $post->post_content;
+					the_content();
+				?>	
 				
 		   <?php endwhile; wp_reset_query(); ?>
     </div>
 </div>  
 	
-	<div class="col-md-4">
+	<div class="col-md-4 col-sm-4">
     <div class="standard-section3-column2">
         
         <h2>Dernières actualités</h2>

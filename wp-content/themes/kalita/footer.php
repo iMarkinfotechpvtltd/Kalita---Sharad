@@ -15,7 +15,7 @@
     <section class="section7">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3">
                     <div class="section7-col1">
 					<!--**********  GETTING CONTACT DETAILs *************** -->
                         <h2><?php echo get_option_tree('kalita_heading');?></h2>
@@ -25,19 +25,17 @@
 							
                             <br><?php echo get_option_tree('phone_text');?><a href="tel:+<?php echo get_option_tree('phone_number');?>">&nbsp;+<?php echo get_option_tree('phone_number');?></a>
 							
-                            <br><?php echo get_option_tree('fax_text');?><a href="#">&nbsp;+<?php echo get_option_tree('fax_number');?></a>
+                            <!--<br><?php //echo get_option_tree('fax_text');?><a href="#">&nbsp;+<?php //echo get_option_tree('fax_number');?></a>-->
 						</p>
 							
                         <ul class="social-links-footer">
                             <li><a href="<?php echo get_option_tree('twitter');?>" class="btn-social"><i class="fa fa-fw fa-twitter"></i></a></li>
                             <li><a href="<?php echo get_option_tree('facebook');?>" class="btn-social"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                             <li><a href="<?php echo get_option_tree('google_plus');?>" class="btn-social"><i class="fa fa-google-plus" aria-hidden="true"></i></i></a></li>
-                            <li><a href="<?php echo get_option_tree('instagram');?>" class="btn-social"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="<?php echo get_option_tree('tumblr');?>" class="btn-social"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3">
                     <div class="section7-col2">
                         <h2>SUR NOTRE SITE</h2>
                         <ul class="section7-col2-list">
@@ -69,7 +67,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3">
                     <div class="section7-col2">
                         <h2>QUELQUES LIENS UTILES</h2>
                         <ul class="section7-col2-list">
@@ -103,11 +101,12 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3">
                     <div class="section7-col3">
-						<a href="<?php echo get_option_tree('cgu_url');?>"><h2><?php echo get_option_tree('cgu');?></h2></a> 
-						<a href="<?php echo get_option_tree('mentions_l_gales_url');?>"><h3><?php echo get_option_tree('mentions_l_gales');?></h3></a> 
-						<a href="<?php echo get_option_tree('plan_du_site_url');?>"><h4><?php echo get_option_tree('plan_du_site');?></h4></a> 
+						<a href="<?php echo site_url();?>/<?php echo get_option_tree('mentions_l_gales_url');?>"><h3>
+						<?php echo get_option_tree('mentions_l_gales');?></h3></a> 
+						<a href="<?php echo site_url();?>/<?php echo get_option_tree('plan_du_site_url');?>"><h4>
+						<?php echo get_option_tree('plan_du_site');?></h4></a> 
 					</div>
                 </div>
             </div>
@@ -143,7 +142,11 @@
 	<script src="<?php echo get_template_directory_uri();?>/js/parallax.js"></script>
 	<script src="<?php echo get_template_directory_uri();?>/js/parallax2.js"></script>	
     <script src="<?php echo get_template_directory_uri();?>/js/modernizr.js"></script>
+    <script src="<?php echo get_template_directory_uri();?>/js/jquery.mosaicflow.min.js"></script>
+	<script src="<?php echo get_template_directory_uri();?>/js/lightbox.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	
+    
 	
 	<script>
         jQuery(document).ready(function () {
@@ -175,7 +178,7 @@
            var $window = jQuery(window); //Window object
 
            var scrollTime = 0.6; //Scroll time
-           var scrollDistance = 170; //Distance. Use smaller value for shorter scroll and greater value for longer scroll
+           var scrollDistance = 300; //Distance. Use smaller value for shorter scroll and greater value for longer scroll
 
            $window.on("mousewheel DOMMouseScroll", function (event) {
 
@@ -200,6 +203,23 @@
        });
 </script>
    
+<script>
+jQuery('.actualities-main').mosaicflow({
+  itemSelector: '.item-mosac',
+  minItemWidth: 500
+});
+</script>   
+
+<script>
+        jQuery(document).on("scroll", function () {
+            if (jQuery(document).scrollTop() > 100) {
+                jQuery("nav.navbar.navbar-default").addClass("small");
+            }
+            else {
+                jQuery("nav.navbar.navbar-default").removeClass("small");
+            }
+        });
+</script>
 
 
 <!--END OF SCRIPT USE BY HTML DESIGNER-->	
@@ -299,18 +319,36 @@ jQuery(document).ready(function()
 </script>
 
 
-        <script>
-            jQuery(document).on("scroll",function(){
+<script>
+jQuery(document).ready(function()
+{
+	jQuery('ul.nav li.menu-item-106 ul.sub-menu li.menu-item-403').hide();
+});
+</script>
+
+
+<script>
+    jQuery(document).on("scroll",function(){
     if(jQuery(document).scrollTop()>200){
         jQuery("nav.navbar.navbar-default").addClass("small");
     } else{
         jQuery("nav.navbar.navbar-default").removeClass("small");
     }
 });
-        </script>
+</script>
 
 
-<script src="js/lightbox.js"></script>
+<!--************* HIDE CONTACT FORM MESSAGE AFTER A TIME *******************-->
+<script>
+jQuery('.form-btn').click(function(){
+	
+   setTimeout(function(){ jQuery('.wpcf7-validation-errors').fadeOut('slow'); }, 9000);
+   setTimeout(function(){ jQuery('.wpcf7-mail-sent-ok').fadeOut('slow'); }, 9000);
+});
+</script>
+
+
+
 
 <!-- ******************* END OF SCRIPT ADDED BY DEVELOPER **************************-->
 <?php wp_footer(); ?>

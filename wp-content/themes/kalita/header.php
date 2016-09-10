@@ -13,7 +13,7 @@
 <html <?php language_attributes(); ?> class="no-js">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	
 	<?php wp_head(); ?>
 	<!--PROJECT HTML HEAD SECTION-->
@@ -40,8 +40,8 @@
         <nav class="navbar navbar-default ">
             <div class="navbar-header">
             <a class="navbar-brand" href="<?php echo site_url();?>"><!--<img class="img-responsive" src="<?php //echo get_option_tree('logo_image');?>">-->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="318.91px" height="413.521px" viewBox="0 0 318.91 413.521" enable-background="new 0 0 318.91 413.521"
+<svg x="0px" y="0px"
+	  viewBox="0 0 318.91 413.521" enable-background="new 0 0 318.91 413.521"
 	 xml:space="preserve">
 <path display="none" fill="#FFFFFF" d="M131.541,934.322h1.932H131.541z"/>
 <path fill="#5E5E5E" d="M43.948,371.563c7.269,0,11.042,3.865,11.042,3.865l-1.197,1.564c0,0-3.68-3.497-9.845-3.497
@@ -179,8 +179,8 @@
 	c-0.812,1.494-1.596,2.747-2.349,3.76c-0.751,1.014-1.544,1.998-2.378,2.956L192.063,45.705z"/>
 </svg>
 
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="318.91px" height="413.521px" viewBox="0 0 318.91 413.521" enable-background="new 0 0 318.91 413.521"
+<svg x="0px" y="0px"
+	 viewBox="0 0 318.91 413.521" enable-background="new 0 0 318.91 413.521"
 	 xml:space="preserve">
 <path display="none" fill="#FFFFFF" d="M131.541,934.322h1.932H131.541z"/>
 <path fill="#FFFFFF" d="M43.948,371.563c7.269,0,11.042,3.865,11.042,3.865l-1.197,1.564c0,0-3.68-3.497-9.845-3.497
@@ -320,8 +320,7 @@
                     <li><a href="<?php echo get_option_tree('twitter');?>" class="btn-social"><i class="fa fa-fw fa-twitter"></i></a></li>
                     <li><a href="<?php echo get_option_tree('facebook');?>" class="btn-social"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="<?php echo get_option_tree('google_plus');?>" class="btn-social"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                    <li><a href="<?php echo get_option_tree('instagram');?>" class="btn-social"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                    <li><a href="<?php echo get_option_tree('tumblr');?>" class="btn-social"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
+                   
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                  
@@ -350,7 +349,8 @@
 				?>
 				<!--END OF CODE USE FOR GETTING HEADER MENU-->	  
 				</ul>
-            </div> <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+               <a href="<?php echo site_url()?>/contact" class="comments"><i class="fa fa-comments-o" aria-hidden="true"></i><span>Nous contacter</span></a>
+     </div> 
     </nav>
     </header>
                                                                                                                                       

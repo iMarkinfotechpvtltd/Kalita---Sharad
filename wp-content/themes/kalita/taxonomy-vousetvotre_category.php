@@ -19,6 +19,9 @@
 get_header();
 global $post; 
 
+$category = $wp_query->get_queried_object();
+
+
 /*** CODE USE FOR GETTING CUSTOM FIELD CATEGORY_IMAGE VALUE FROM TAXONOMY ***/
 
 $terms = wp_get_post_terms( $post->ID, 'vousetvotre_category' ); 
@@ -75,21 +78,36 @@ else
         <h2>Dernières actualités</h2>
         
         <ul class="standard-column2-list">
+		
+		         
+		
            <?php 
-					$args=array
-					(
-							'post_type'      =>'post',
-							'posts_per_page' => 5,
-							'order'          => 'DESC',
-					);
-					$actualites = new WP_Query($args);
+		
+		   
+					// $args=array
+					// (
+							// 'post_type'      =>'post',
+							// 'posts_per_page' => 5,
+							// 'order'          => 'DESC',
+					// );
+					// $actualites = new WP_Query($args);
 				
-					while( $actualites -> have_posts() ) : $actualites -> the_post();
+				
+			
+					wp_nav_menu( array(
+								'theme_location' => 'primary',
+								'sub_menu' => true,
+								'menu_id'  => '106',
+								//'exclude' =>$category->slug
+								
+						) );
+			
+					/*while( $actualites -> have_posts() ) : $actualites -> the_post();
 				?>
 						<li><a href="<?php the_permalink();?>"><?php the_title();?></a></li>
 			  <?php  
 					endwhile; 
-					wp_reset_query();
+					wp_reset_query();*/
 			   ?>
         </ul>
         

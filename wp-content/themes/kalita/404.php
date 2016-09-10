@@ -1,34 +1,46 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
+ * Template for displaying 404 pages (Not Found)
  *
  * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
+ * @subpackage Twenty_Ten
+ * @since Twenty Ten 1.0
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="error-page">
+<div class="container">
+<div class="error-404"> 
+<b>404</b>
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'twentysixteen' ); ?></h1>
-				</header><!-- .page-header -->
+<h1 class="page-title">Oops! That page can’t be found.</h1>
 
-				<div class="page-content">
-					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentysixteen' ); ?></p>
+<a href="http://kalita.stagingdevsite.com/dev/" >Home page</a>
 
-					<?php get_search_form(); ?>
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
+</div>
 
-		</main><!-- .site-main -->
+</div>
+</div>
+ 
 
-		<?php get_sidebar( 'content-bottom' ); ?>
 
-	</div><!-- .content-area -->
+	<!-- <div id="container">
+		<div id="content" role="main">
 
-<?php get_sidebar(); ?>
+			<div id="post-0" class="post error404 not-found">
+				<h1 class="entry-title"><?php //_e( 'Not Found', 'twentyten' ); ?></h1>
+				<div class="entry-content">
+					<p><?php //_e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'twentyten' ); ?></p>
+					<?php //get_search_form(); ?>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		// focus on search field after it has loaded
+		//document.getElementById('s') && document.getElementById('s').focus();
+	</script>-->
+
 <?php get_footer(); ?>

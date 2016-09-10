@@ -9,52 +9,107 @@
  
  /*Getting  Home Banner Image */
 	$Banner_image=get_post_meta($post->ID,"home_banner",true);
-	$Banner = wp_get_attachment_image_src($Banner_image, 'home_banner_image_size');	
+	$Banner = wp_get_attachment_image_src($Banner_image, 'full');	
 		
  ?>
  <section class="section2"  style="background-image:url('<?php echo $url=$Banner[0]?>')" >
         <div class="container">
             <div class="shadow-box">
-					<h2><a href=""><?php the_field('etat_de_votre_reseau_text',$post->ID);?></a></h2>
+					<h2><a href="<?php echo site_url();?>/letat-de-votre-reseau/"><?php the_field('etat_de_votre_reseau_text',$post->ID);?></a></h2>
                 <div class="shadow-box-inner">
 				
 				<!--***************START GETTING DATA FROM CUSTOM POST L’ÉTAT DE ******************-->
 			<?php
 			
-			  query_posts('post_type=ltat_de&showposts=2&order=DESC'); 
 			 
-			 while (have_posts()) : the_post(); 
-			 ?>
-                    <p><a href="<?php the_permalink();?>"><?php the_field('date',$post->ID)?>
-                        <br><small><?php the_title();?><br>
-						<?php $content = get_the_content(); echo mb_strimwidth($content, 0, 40);?></small></a></p>
-             <?php 
-			 endwhile;
-			 wp_reset_query();
-			 ?>  
+					$todaysDate = date('Y-m-d');
+					$args=array
+					(
+							'post_type'      =>'ltat_de_votre_rseaus',
+							'posts_per_page' => 2,
+							'order'          => 'DESC',
+					);
+					$ltat_de = new WP_Query($args);
+				    $count=0;
+					while( $ltat_de -> have_posts() ) : $ltat_de -> the_post();
+					
+					$postDate = get_the_date('Y-m-d',$ltat_de->ID);
+					if($postDate==$todaysDate)
+					{
+						
+						$count=$count+1;
+					}         
+					endwhile; wp_reset_query();
+					
+					$count; 
+					if($count > 0)
+					{	
+					$args=array
+					(
+							'post_type'      =>'ltat_de_votre_rseaus',
+							'posts_per_page' => 2,
+							'order'          => 'DESC',
+					);
+					$ltat_de = new WP_Query($args);
+				    
+					while( $ltat_de -> have_posts() ) : $ltat_de -> the_post();
+			 
+					$postDate = get_the_date('Y-m-d',$ltat_de->ID);
+					
+					if($postDate==$todaysDate)
+					{
+					?>
+							<p><a href="<?php echo site_url();?>/letat-de-votre-reseau/"><?php echo date('d M, Y')?>
+								<br><small><?php the_title();?><br>
+								<?php $content = get_the_content(); echo mb_strimwidth($content, 0, 40);?></small></a></p>
+					<?php
+					}	
+					endwhile;
+					wp_reset_query();
+					}
+					else
+					{
+					?>
+						<p><a><?php echo date('d/m/Y')?><br>
+					<?php	
+            					 echo 'Aucune perturbation pr&#233;vue sur votre r&#233;seau';
+					?>			 
+					</a></p>
+					<?php
+					}	
+					?>  
+					
 			<!--***************END OF GETTING DATA FROM CUSTOM POST L’ÉTAT DE ******************-->
 				
 				
 			<!--***************START GETTING DATA FROM CUSTOM POST L’ACTUALITÉ DE ******************-->	
 
-                 <h3><a href=""><?php the_field('actualite_de_votre_reseau_text',$post->ID);?></a></h3>
+                <h3><a href="<?php echo site_url();?>/actualites/"><?php the_field('actualite_de_votre_reseau_text',$post->ID);?></a></h3>
                     <?php 
 					$args=array
 					(
-							'post_type'      =>'lactualit_de',
+							'post_type'      =>'post',
 							'posts_per_page' => 1,
 							'order'          => 'DESC',
 					);
 					$lactualit_de = new WP_Query($args);
-				
+				     
+					if($lactualit_de -> have_posts()) 
+					{
 					while( $lactualit_de -> have_posts() ) : $lactualit_de -> the_post();
 					?>
-					<p><a href="<?php the_permalink();?>"><?php echo date('d/m/Y');?>&nbsp;<?php the_title();?>
-                        <br><small><?php $content = get_the_content(); echo mb_strimwidth($content, 0, 120);?></small></a></p>
+					<p><a href="<?php echo site_url();?>/actualites/"><?php echo date('d/m/Y');?>&nbsp;<?php the_title();?>
+                        <br><small><?php $content = get_the_content(); echo mb_strimwidth($content, 0, 100);?></small></a></p>
 					
 					<?php 
 					endwhile;
 					wp_reset_query();
+					}//if close
+					else
+					{
+						echo "NO NOUVELLES DE VOTRE RESEAU";
+					}
+					
 					?> 
 					
 					
@@ -65,7 +120,10 @@
 					<!--********GETTING DATA FROM CUSTOM FIELD SHADOW-BOX-FOOTER_TEXT*******-->
                        
 					   <?php the_field('shadow-box-footer_text');?>
-                    
+					   
+                        <!--<h2>DJU</h2>
+                        <p>mai 2016 : 142</p>-->
+
 					</div>
                 </div>
             </div>
@@ -88,7 +146,7 @@
                foreach ($terms as $term) 
                {
 			   ?>
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-4">
 						 <div class="section4-column"><a href="<?php echo get_category_link( $term->term_id ); ?>"><span><img src="<?php echo z_taxonomy_image_url($term->term_id); ?>"></span></a>
 							<h3><a href="<?php echo get_category_link( $term->term_id ); ?>"><?php echo $term->name;?></a></h3>
 								<p><?php echo $term->description;?></p>
@@ -105,17 +163,12 @@
         <div class="container">
             <div class="googlemap2">
 			<?php 
-				$location = get_field('home_map',$post->ID);	
-				if( !empty($location) ):	
-			 ?>
-				<div class="acf-map">
-				<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>">
-					</div>
-				</div>
-				<?php endif; ?> 
+				the_field('home_map',$post->ID);	
+				?>
 					<!--<iframe src="https://www.google.com/maps/d/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>--> 
 					
-					<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>
+					<!--<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1W7Y375wb8tog71Qi7yKOlFSPZLw" ></iframe>-->
+
             </div>
         </div>
     </section>
@@ -129,17 +182,20 @@
 		     <?php
 				$i=1;
 				$args = array( 'taxonomy' => 'vousetvotre_category',
-								//'order' => 'ASC',
-								'orderby' => 'time',
+								'order' => 'ASC',
+								'exclude'=>11,
 								'hide_empty'=>0 );
 				$terms = get_terms('vousetvotre_category', $args);
-
-               foreach ($terms as $term) 
+                
+               foreach ($terms as $term)			   
                {
+				   	
+					
 				   if($i>=1 && $i<=3)
 				   {
+
 				?>
-						<div class="col-md-4">
+						<div class="col-md-4 col-sm-4">
 							<div class="img-list1">
 								<a href="<?php echo get_category_link( $term->term_id ); ?>">
 									<span><img src="<?php echo z_taxonomy_image_url($term->term_id); ?>"></span>
@@ -150,8 +206,11 @@
 								</div>
 							</div>
 						</div>
-				<?php	
-				   }
+				<?php
+						
+				   }//end of inner if
+				  
+				 
 				   else
 				   {
 						if($i==4)
@@ -164,10 +223,12 @@
 								<div class="row">
 				<?php 
 						}//end of if
+						
 						if($i>=4 && $i<=6)
 						{
+							
 				?>
-							<div class="col-md-4">
+							<div class="col-md-4 col-sm-4">
 								<div class="img-list1">
 									<a href="<?php echo get_category_link( $term->term_id ); ?>">
 										<span><img src="<?php echo z_taxonomy_image_url($term->term_id); ?>"></span>
@@ -179,12 +240,14 @@
 								</div>
 							</div>
 				<?php
+							
 						}//end of if
 						
+					
 					}//end of else
 					
 					$i++;
-				
+				   
 			   }//end of foreach loop
 				?>       
             </div>

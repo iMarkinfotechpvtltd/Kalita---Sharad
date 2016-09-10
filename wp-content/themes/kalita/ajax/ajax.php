@@ -9,7 +9,9 @@ global $g;
 $g=1;
 $q=1;
 $i=0;
-?>	
+?>
+  
+	
 <?php 
 query_posts( array (  'post_type' => 'post', 'order'=> 'DESC','posts_per_page'=>$display_count,'offset'=>$offSet) );
 			while ( have_posts() ) : the_post(); 
@@ -171,6 +173,8 @@ query_posts( array (  'post_type' => 'post', 'order'=> 'DESC','posts_per_page'=>
 					?>
 						</div>
 							
-					<?php }endwhile;wp_reset_query(); ?>
+					<?php 
+					}
+					endwhile;wp_reset_query(); ?>
 				
 			

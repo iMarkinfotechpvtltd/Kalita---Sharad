@@ -3,8 +3,8 @@ Contributors: naa986
 Donate link: http://noorsplugin.com/
 Tags: video, wpvideo, flash, html5, iPad, iphone, ipod, mobile, playlists, embed video, flowplayer, video html5, flash player, player, video player
 Requires at least: 4.3
-Tested up to: 4.5
-Stable tag: 1.1.3
+Tested up to: 4.6
+Stable tag: 1.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.1.4 =
+* Added a new shortcode parameter - "video_id". It can be used to specify a custom ID for a video.
 
 = 1.1.3 =
 * mediaelement template now supports the video preload attribute

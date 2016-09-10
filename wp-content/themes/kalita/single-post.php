@@ -19,6 +19,8 @@ global $wpdb;
 // echo '</pre>';
 
 // die;
+
+
 ?>
 
  <section class="background">
@@ -79,7 +81,7 @@ global $wpdb;
 									<img src="<?php //echo  get_template_directory_uri(); ?>/images/ajax-loader.gif" id="loader">
 								</div>-->
 							<div class="actualites-img-description">
-								<?php echo $post->post_content;?>
+								<p><?php echo $post->post_content;?></p>
 								<div class="tags"> 
 									<b>Tages:</b><small>
 									<?php
@@ -100,18 +102,20 @@ global $wpdb;
 								</div>
 							</div>
 							<div class="actualites-comments">
-			<?php				
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) {
-							comments_template();
-						} ?>
+						  <?php				
+								// If comments are open or we have at least one comment, load up the comment template.
+								// if ( comments_open() || get_comments_number() )
+									// {
+										// comments_template();
+									// } 
+				           ?>
 							</div>
 						</div>
 					</div>
 					
 					<div class="col-md-4">
 						<div class="standard-section3-column2">
-							<h2>Dernières actualités</h2>
+							<h2>Derni&#233;res actualit&#233;s</h2>
 							 <ul class="standard-column2-list">
 							   <?php 
 										$args=array
